@@ -28,15 +28,15 @@ export default {
   //     console.log(error);
   //   }
   // },
-  async fetch({ store, error }) {
-    try {
-      if (store.getters["users/users"].length === 0) {
-        await store.dispatch("users/fetchUsers");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  },
+  // async fetch({ store, error }) {
+  //   try {
+  //     if (store.getters["users/users"].length === 0) {
+  //       await store.dispatch("users/fetchUsers");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // },
   data() {
     return {
       pageTitle: "User page"

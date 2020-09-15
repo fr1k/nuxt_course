@@ -20,23 +20,33 @@
 
 <script>
 export default {
-  asyncData({ $axios, error }) {
-    return $axios
-      .$get("http://jsonplaceholder.typicode.com/users")
-      .then(users => {
-        return {
-          users
-        };
-      })
-      .catch(err => {
-        error(err);
-      });
+  // async asyncData({ store, error }) {
+  //   try {
+  //     const users = await store.dispatch("users/fetchUsers");
+  //     return {};
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // },
+  async fetch({ store, error }) {
+    try {
+      if (store.getters["users/users"].length === 0) {
+        await store.dispatch("users/fetchUsers");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   },
   data() {
     return {
       pageTitle: "User page"
       // users: []
     };
+  },
+  computed: {
+    users() {
+      return this.$store.getters["users/users"];
+    }
   }
 };
 </script>

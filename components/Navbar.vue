@@ -8,6 +8,9 @@
           <b-nav-item to="/users">Users</b-nav-item>
           <b-nav-item to="/about">About</b-nav-item>
           <b-nav-item to="/login">Login</b-nav-item>
+          <b-nav-item v-if="isAuth" href="#" @click.prevent="logout"
+            >Logout</b-nav-item
+          >
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -15,7 +18,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    isAuth() {
+      return this.$store.getters.isAuth;
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    }
+  }
+};
 </script>
 
 <style></style>
